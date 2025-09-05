@@ -7,12 +7,16 @@ const MapScreen = () => {
     <View style={styles.container}>
       <MapView
         style={styles.map}
+        mapType="mutedStandard"
         initialRegion={{
           latitude: 48.8566,
           longitude: 2.3522,
           latitudeDelta: 0.0922,
           longitudeDelta: 0.0421,
         }}
+        showsPointsOfInterest={false}
+        showsBuildings={false}
+        showsTraffic={false}
       />
     </View>
   );
