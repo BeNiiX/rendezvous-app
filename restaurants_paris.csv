@@ -1,0 +1,11 @@
+name,address,location,description,main_image_url,menu_url
+"Le Bistrot du Coin","45 Rue des Francs-Bourgeois, 75004 Paris","(2.358,48.857)","Un bistrot parisien authentique servant des classiques de la cuisine française. Ambiance chaleureuse et conviviale.","https://picsum.photos/seed/bistrot/800/600",""
+"Pizza Bella","22 Rue des Abbesses, 75018 Paris","(2.339,48.886)","Les meilleures pizzas napolitaines de Montmartre, cuites au feu de bois. Produits frais et importés d'Italie.","https://picsum.photos/seed/pizza/800/600",""
+"Le Dragon Céleste","5 Avenue de Choisy, 75013 Paris","(2.362,48.825)","Voyagez en Chine avec nos spécialités cantonaises et sichuanaises. Canard laqué réputé.","https://picsum.photos/seed/dragon/800/600",""
+"Sushi Zen","12 Rue de Buci, 75006 Paris","(2.337,48.854)","Maître sushi expérimenté proposant des sushis, sashimis et makis d'une fraîcheur incomparable.","https://picsum.photos/seed/sushi/800/600",""
+"Crêperie Bretonne","67 Rue du Montparnasse, 75014 Paris","(2.327,48.841)","Galettes de sarrasin et crêpes sucrées dans la plus pure tradition bretonne. Cidre artisanal.","https://picsum.photos/seed/creperie/800/600",""
+"Le Burger Gourmet","8 Quai de Valmy, 75010 Paris","(2.365,48.871)","Des burgers créatifs avec du pain artisanal et de la viande de bœuf d'origine française. Frites maison.","https://picsum.photos/seed/burger/800/600",""
+"La Cantina Mexicana","33 Rue de la Huchette, 75005 Paris","(2.345,48.852)","Tacos, guacamole, et margaritas dans une ambiance festive et colorée au cœur du Quartier Latin.","https://picsum.photos/seed/cantina/800/600",""
+"Au Bon Couscous","95 Boulevard de Belleville, 75011 Paris","(2.378,48.868)","Un couscous royal généreux et parfumé, préparé dans les règles de l'art. Spécialités tunisiennes.","https://picsum.photos/seed/couscous/800/600",""
+"Vegan Vibes","15 Rue Vieille du Temple, 75004 Paris","(2.357,48.856)","Cuisine 100% végétale, créative et savoureuse. Des bowls colorés aux pâtisseries gourmandes.","https://picsum.photos/seed/vegan/800/600",""
+"L'Éclair de Génie","14 Rue Pavée, 75004 Paris","(2.359,48.855)","La pâtisserie mono-produit qui réinvente l'éclair. Des saveurs uniques et un design spectaculaire.","https://picsum.photos/seed/eclair/800/600",""

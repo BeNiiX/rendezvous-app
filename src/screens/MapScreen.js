@@ -4,6 +4,7 @@ import MapView, { Marker } from 'react-native-maps';
 import { supabase } from '../api/supabase';
 import CustomMarker from '../components/map/CustomMarker';
 import RestaurantCard from '../components/common/RestaurantCard';
+import FloatingNav from '../components/common/FloatingNav';
 
 const MapScreen = () => {
   const [restaurants, setRestaurants] = useState([]);
@@ -78,10 +79,13 @@ const MapScreen = () => {
           );
         })}
       </MapView>
+
       <RestaurantCard 
         restaurant={selectedRestaurant} 
         onClose={() => setSelectedRestaurant(null)} 
       />
+
+      <FloatingNav currentScreen="Map" />
     </View>
   );
 };
