@@ -91,24 +91,26 @@ const MapScreen = () => {
           longitude: geometry.coordinates[0],
           latitude: geometry.coordinates[1],
         }}
-         onPress={async () => {
-           const camera = await mapRef.current?.getCamera();
-           const expansionZoom = Math.min(18, (camera?.zoom || 10) + 2);
-           
-           mapRef.current?.animateToRegion(
-             {
-               longitude: geometry.coordinates[0],
-               latitude: geometry.coordinates[1],
-               latitudeDelta: 0.1,
-               longitudeDelta: 0.1,
-             },
-             300
-           );
-         }}
       >
         <ClusterMarker count={points} imageUrls={imageUrls} />
       </Marker>
     );
+  };
+
+  const handleClusterPress = (cluster, markers) => {
+    if (!mapRef.current) return;
+
+    const coordinates = markers.map(marker => ({
+      latitude: marker.geometry.coordinates[1],
+      longitude: marker.geometry.coordinates[0],
+    }));
+
+    if (coordinates.length > 0) {
+      mapRef.current.fitToCoordinates(coordinates, {
+        edgePadding: { top: 100, right: 100, bottom: 100, left: 100 },
+        animated: true,
+      });
+    }
   };
 
 
@@ -119,10 +121,10 @@ const MapScreen = () => {
         style={styles.map}
         mapType="mutedStandard"
         initialRegion={{
-          latitude: 48.8566,
-          longitude: 2.3522,
-          latitudeDelta: 0.0922,
-          longitudeDelta: 0.0421,
+          latitude: 48.86512910,
+          longitude: 2.36316480,
+          latitudeDelta: 0.015,
+          longitudeDelta: 0.006,
         }}
         showsPointsOfInterest={false}
         showsBuildings={false}
@@ -130,6 +132,7 @@ const MapScreen = () => {
         clusterColor="#fff"
         renderCluster={renderCluster}
         radius={60}
+        onClusterPress={handleClusterPress}
       >
         {restaurants.map(restaurant => {
           const coordinate = parseLocation(restaurant.location);
