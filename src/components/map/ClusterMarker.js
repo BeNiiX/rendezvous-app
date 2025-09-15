@@ -1,26 +1,21 @@
 import React from 'react';
-import { View, Text, StyleSheet, Image } from 'react-native';
+import { View, Text, StyleSheet } from 'react-native';
+import BaseMarker from './BaseMarker';
 
-const ClusterMarker = ({ count, firstRestaurant }) => {
-  const imageUrl = firstRestaurant?.properties?.imageUrl || 'https://via.placeholder.com/150';
-
+const ClusterMarker = ({ count, imageUrls = [] }) => {
   return (
     <View style={styles.container}>
-      {/* Stacked cards effect */}
-      <View style={[styles.card, styles.card2]} />
-      <View style={[styles.card, styles.card1]} />
-      
-      {/* Top card with image */}
-      <View style={[styles.card, styles.topCard]}>
-        <Image 
-          source={{ uri: imageUrl }} 
-          style={styles.image} 
-        />
-        {count > 1 && (
-          <View style={styles.countBubble}>
-            <Text style={styles.countText}>+{count - 1}</Text>
-          </View>
-        )}
+      <View style={[styles.marker, styles.marker3]}>
+        <BaseMarker imageUrl={imageUrls[2]} />
+      </View>
+      <View style={[styles.marker, styles.marker2]}>
+        <BaseMarker imageUrl={imageUrls[1]} />
+      </View>
+      <View style={styles.marker}>
+        <BaseMarker imageUrl={imageUrls[0]} />
+      </View>
+      <View style={styles.countBubble}>
+        <Text style={styles.countText}>+{count}</Text>
       </View>
     </View>
   );
@@ -28,52 +23,39 @@ const ClusterMarker = ({ count, firstRestaurant }) => {
 
 const styles = StyleSheet.create({
   container: {
-    width: 70,
-    height: 70,
+    width: 80,
+    height: 80,
     justifyContent: 'center',
     alignItems: 'center',
-    position: 'relative',
   },
-  card: {
-    width: 50,
-    height: 50,
-    borderRadius: 12,
-    backgroundColor: '#fff',
+  marker: {
     position: 'absolute',
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.2,
-    shadowRadius: 4,
-    elevation: 3,
   },
-  card1: {
-    transform: [{ rotate: '-6deg' }],
+  marker2: {
+    transform: [{ translateX: -6 }, { translateY: -6 }],
+    zIndex: -1,
   },
-  card2: {
-    transform: [{ rotate: '-12deg' }],
-  },
-  topCard: {
-    zIndex: 1,
-    overflow: 'hidden',
-  },
-  image: {
-    width: '100%',
-    height: '100%',
+  marker3: {
+    transform: [{ translateX: -12 }, { translateY: -12 }],
+    zIndex: -2,
   },
   countBubble: {
     position: 'absolute',
-    top: -5,
-    right: -5,
-    backgroundColor: '#333',
-    borderRadius: 12,
-    paddingHorizontal: 6,
-    paddingVertical: 2,
-    borderWidth: 1,
-    borderColor: '#fff',
+    bottom: 0,
+    right: 0,
+    backgroundColor: 'rgba(0, 0, 0, 0.8)',
+    width: 28,
+    height: 28,
+    borderRadius: 14,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderWidth: 2,
+    borderColor: 'white',
+    elevation: 6,
   },
   countText: {
-    color: '#fff',
-    fontSize: 10,
+    color: 'white',
+    fontSize: 12,
     fontWeight: 'bold',
   },
 });
