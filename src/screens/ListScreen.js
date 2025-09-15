@@ -38,61 +38,58 @@ const RestaurantItem = ({ item }) => {
     }
   }).current;
 
-  // Placeholder for multiple images
   const images = item.gallery_image_urls || [item.main_image_url, item.main_image_url, item.main_image_url, item.main_image_url];
 
   return (
     <View style={styles.restaurantCard}>
-      {/* Header */}
-      <View style={styles.header}>
-        <Text style={styles.restaurantName}>{item.name}</Text>
-        <TouchableOpacity style={styles.heartButton}>
-          <Ionicons name="heart-outline" size={28} color="#fff" />
-        </TouchableOpacity>
-      </View>
-
-      {/* Image Carousel */}
-      <View style={styles.carouselContainer}>
-        <FlatList
-          data={images}
-          keyExtractor={(img, index) => `${item.id}_${index}`}
-          renderItem={({ item: imageUrl }) => (
-            <Image source={{ uri: imageUrl }} style={styles.image} />
-          )}
-          horizontal
-          pagingEnabled
-          showsHorizontalScrollIndicator={false}
-          onViewableItemsChanged={onViewableItemsChanged}
-          viewabilityConfig={{
-            itemVisiblePercentThreshold: 50
-          }}
-        />
-        {images.length > 1 && <Pagination index={currentImageIndex} data={images} />}
-      </View>
-
-      {/* Info Section */}
-      <View style={styles.content}>
-        <View style={styles.tagsContainer}>
-          <View style={styles.tag}>
-            <Text style={styles.tagText}>Restaurant</Text>
+      <View style={styles.contentContainer}>
+        {/* Header & Tags */}
+        <View style={styles.header}>
+          <View>
+            <Text style={styles.restaurantName}>{item.name}</Text>
+            <View style={styles.tagsContainer}>
+              <View style={styles.tag}><Text style={styles.tagText}>Restaurant</Text></View>
+              <View style={styles.tag}><Text style={styles.tagText}>Bar</Text></View>
+            </View>
           </View>
-          <View style={styles.tag}>
-            <Text style={styles.tagText}>Bar</Text>
+          <TouchableOpacity style={styles.heartButton}>
+            <Ionicons name="heart-outline" size={28} color="#fff" />
+          </TouchableOpacity>
+        </View>
+
+        {/* Image Carousel */}
+        <View style={styles.carouselContainer}>
+          <FlatList
+            data={images}
+            keyExtractor={(img, index) => `${item.id}_${index}`}
+            renderItem={({ item: imageUrl }) => (
+              <Image source={{ uri: imageUrl }} style={styles.image} />
+            )}
+            horizontal
+            pagingEnabled
+            showsHorizontalScrollIndicator={false}
+            onViewableItemsChanged={onViewableItemsChanged}
+            viewabilityConfig={{ itemVisiblePercentThreshold: 50 }}
+          />
+          {images.length > 1 && <Pagination index={currentImageIndex} data={images} />}
+        </View>
+
+        {/* Info Section */}
+        <View style={styles.infoSection}>
+          <View style={styles.ratingContainer}>
+            <Text style={styles.ratingText}>4,9</Text>
+            {[1, 2, 3, 4, 5].map((star) => (
+              <Ionicons key={star} name="star" size={16} color="#FFD700" />
+            ))}
           </View>
-        </View>
-        <View style={styles.ratingContainer}>
-          <Text style={styles.ratingText}>4,9</Text>
-          {[1, 2, 3, 4, 5].map((star) => (
-            <Ionicons key={star} name="star" size={16} color="#FFD700" />
-          ))}
-        </View>
-        <View style={styles.infoRow}>
-          <Ionicons name="location-outline" size={16} color="#ccc" />
-          <Text style={styles.address}>{item.address}</Text>
-        </View>
-        <View style={styles.infoRow}>
-          <Ionicons name="time-outline" size={16} color="#ccc" />
-          <Text style={styles.hours}>10AM - 2PM & 9PM - 1AM</Text>
+          <View style={styles.infoRow}>
+            <Ionicons name="location-outline" size={16} color="#ccc" />
+            <Text style={styles.address}>{item.address}</Text>
+          </View>
+          <View style={styles.infoRow}>
+            <Ionicons name="time-outline" size={16} color="#ccc" />
+            <Text style={styles.hours}>10AM - 2PM & 9PM - 1AM</Text>
+          </View>
         </View>
       </View>
     </View>
@@ -140,41 +137,44 @@ const styles = StyleSheet.create({
     width: screenWidth,
     height: screenHeight,
     justifyContent: 'center',
-    paddingBottom: 80, // Space for nav bar
+    alignItems: 'center',
+  },
+  contentContainer: {
+    width: '100%',
   },
   header: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    alignItems: 'center',
+    alignItems: 'flex-start',
+    marginBottom: 15,
     paddingHorizontal: 20,
-    position: 'absolute',
-    top: 60,
-    width: '100%',
-    zIndex: 1,
   },
   restaurantName: {
     fontSize: 28,
     fontWeight: 'bold',
     color: '#fff',
+    marginBottom: 8,
   },
   heartButton: {
     padding: 8,
   },
   carouselContainer: {
-    width: screenWidth,
-    height: screenWidth / (4 / 3), // 4:3 Aspect Ratio
+    width: '100%',
+    aspectRatio: 1/1,
+    borderRadius: 15,
+    overflow: 'hidden',
+    marginBottom: 15,
   },
   image: {
-    width: screenWidth,
+    width: screenWidth, // paddingHorizontal * 2
     height: '100%',
   },
-  content: {
+  infoSection: {
+    // Container for details below the image
     paddingHorizontal: 20,
-    paddingTop: 15,
   },
   tagsContainer: {
     flexDirection: 'row',
-    marginBottom: 15,
   },
   tag: {
     backgroundColor: '#333',
