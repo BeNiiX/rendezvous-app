@@ -82,7 +82,7 @@ const MapScreen = () => {
       }
     }
     
-    const imageUrls = clusterRestaurants.slice(0, 3).map(r => r.main_image_url);
+    const imageUrls = clusterRestaurants.slice(0, 3).map(r => r.thumbnail_image_url);
 
     return (
       <Marker
@@ -143,10 +143,11 @@ const MapScreen = () => {
               key={restaurant.id}
               coordinate={coordinate}
               onPress={() => setSelectedRestaurant(restaurant)}
+              tracksViewChanges={false}
             >
               <CustomMarker 
                 name={restaurant.name} 
-                imageUrl={restaurant.main_image_url}
+                imageUrl={restaurant.thumbnail_image_url}
                 rating={restaurant.rating ? restaurant.rating.toString().replace('.', ',') : 'N/A'}
               />
             </Marker>

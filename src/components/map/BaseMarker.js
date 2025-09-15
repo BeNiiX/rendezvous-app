@@ -1,5 +1,6 @@
 import React from 'react';
-import { View, Image, StyleSheet } from 'react-native';
+import { View, StyleSheet } from 'react-native';
+import { Image } from 'expo-image';
 
 const BaseMarker = ({ imageUrl }) => {
   return (
@@ -8,6 +9,7 @@ const BaseMarker = ({ imageUrl }) => {
         <Image 
           source={{ uri: imageUrl }} 
           style={styles.image} 
+          cachePolicy={'disk'}
         />
       ) : (
         <View style={styles.image} />
